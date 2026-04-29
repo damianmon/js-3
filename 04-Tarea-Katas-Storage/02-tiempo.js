@@ -12,6 +12,13 @@
 -------------------------------------------------------------------------- */
 function segundosAMinutos(s) {
   // TU CÓDIGO AQUÍ 👇
+  let minutos = Math.floor(s / 60);
+  let segundos = s % 60;
+
+  let minStr = minutos.toString().padStart(2, "0");
+  let segStr = segundos.toString().padStart(2, "0");
+
+  return `${minStr}:${segStr}`;
 }
 
 /* --------------------------------------------------------------------------
@@ -21,6 +28,7 @@ function segundosAMinutos(s) {
 -------------------------------------------------------------------------- */
 function msASegundos(ms) {
   // TU CÓDIGO AQUÍ 👇
+  return Math.floor(ms / 1000);
 }
 
 /* --------------------------------------------------------------------------
@@ -30,6 +38,7 @@ function msASegundos(ms) {
 -------------------------------------------------------------------------- */
 function esMasDeUnaHora(s) {
   // TU CÓDIGO AQUÍ 👇
+  return s > 3600;
 }
 
 /* --------------------------------------------------------------------------
@@ -39,6 +48,7 @@ function esMasDeUnaHora(s) {
 -------------------------------------------------------------------------- */
 function obtenerAnio() {
   // TU CÓDIGO AQUÍ 👇
+  return new Date().getFullYear();
 }
 
 /* --------------------------------------------------------------------------
@@ -49,6 +59,7 @@ function obtenerAnio() {
 -------------------------------------------------------------------------- */
 function diferenciaEnSegundos(inicio, fin) {
   // TU CÓDIGO AQUÍ 👇
+  return Math.floor(Math.abs(fin - inicio) / 1000);
 }
 
 /* --------------------------------------------------------------------------
@@ -59,6 +70,11 @@ function diferenciaEnSegundos(inicio, fin) {
 -------------------------------------------------------------------------- */
 function formatearFechaCorta(date) {
   // TU CÓDIGO AQUÍ 👇
+  let dia = date.getDate().toString().padStart(2, "0");
+  let mes = (date.getMonth() + 1).toString().padStart(2, "0");
+  let anio = date.getFullYear();
+
+  return `${dia}/${mes}/${anio}`;
 }
 
 /* --------------------------------------------------------------------------
@@ -69,6 +85,9 @@ function formatearFechaCorta(date) {
 -------------------------------------------------------------------------- */
 function sumarDias(date, dias) {
   // TU CÓDIGO AQUÍ 👇
+  let nuevaFecha = new Date(date);
+  nuevaFecha.setDate(nuevaFecha.getDate() + dias);
+  return nuevaFecha;
 }
 
 /* --------------------------------------------------------------------------
@@ -78,6 +97,8 @@ function sumarDias(date, dias) {
 -------------------------------------------------------------------------- */
 function esFinDeSemana(date) {
   // TU CÓDIGO AQUÍ 👇
+  let dia = date.getDay();
+  return dia === 0 || dia === 6;
 }
 
 /* --------------------------------------------------------------------------
@@ -89,6 +110,15 @@ function esFinDeSemana(date) {
 -------------------------------------------------------------------------- */
 function obtenerSaludo() {
   // TU CÓDIGO AQUÍ 👇
+  let hora = new Date().getHours();
+
+  if (hora >= 6 && hora < 12) {
+    return "Buenos días";
+  } else if (hora >= 12 && hora < 20) {
+    return "Buenas tardes";
+  } else {
+    return "Buenas noches";
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -98,6 +128,15 @@ function obtenerSaludo() {
 -------------------------------------------------------------------------- */
 function tiempoRestante(ms) {
   // TU CÓDIGO AQUÍ 👇
+  let min = Math.floor(ms / 60000);
+  let seg = Math.floor((ms % 60000) / 1000);
+  let restanteMs = ms % 1000;
+
+  return {
+    min: min,
+    seg: seg,
+    ms: restanteMs,
+  };
 }
 
 // 🚨 ¡NO TOCAR! Exportación para los tests

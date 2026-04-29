@@ -43,6 +43,8 @@ const textoFinal = document.querySelector("#texto-final");
 // ============================================================
 function cargarHighScore() {
   // TU CÓDIGO AQUÍ 👇
+  const highScore = localStorage.getItem("whack-highcore");
+  displayHighScore.textContent = highScore !== null ? highScore : "0";
 }
 
 // ============================================================
@@ -59,6 +61,13 @@ function cargarHighScore() {
 // ============================================================
 function actualizarHighScore() {
   // TU CÓDIGO AQUÍ 👇
+  const highScore = localStorage.getItem("whack-highscore");
+  if (puntaje > Number(highScore) || 0) {
+    localStorage.setItem("whack-highscore", puntaje);
+    displayHighScore.textContent = puntaje;
+    return true;
+  }
+  return false;
 }
 
 // ============================================================
@@ -74,6 +83,8 @@ function actualizarHighScore() {
 // ============================================================
 function hoyoAleatorio() {
   // TU CÓDIGO AQUÍ 👇
+  const numeroAleatorio = Math.floor(Math.random() * hoyos.length);
+  return hoyos[numeroAleatorio];
 }
 
 // ============================================================
@@ -95,6 +106,17 @@ function hoyoAleatorio() {
 // ============================================================
 function mostrarTopo() {
   // TU CÓDIGO AQUÍ 👇
+  if (hoyoActivo !== null) {
+    hoyoActivo.classList.remove("visible");
+  }
+  hoyoActivo = hoyoAleatorio;
+  hoyoActivo.classList.add("visible");
+
+  setTimeout(() => {
+    if (hoyoActivo !== null) {
+      hoyoActivo.classList.remove("visible");
+    }
+  }, 800);
 }
 
 // ============================================================
@@ -114,6 +136,20 @@ function mostrarTopo() {
 // ============================================================
 function golpearTopo(evento) {
   // TU CÓDIGO AQUÍ 👇
+  if (!juegoActivo) return;
+  const hoyo = evento.currentTarget;
+
+  if (!hoyo.classList.contains("visible")) return;
+
+  puntaje++;
+  displayPuntaje.textContent = puntaje;
+
+  hoyo.classList.remove("visible");
+  hoyo.classList.add(golpeado);
+
+  setTimeout(() => {
+    hoyo.classList.remove(golpeado);
+  }, 300);
 }
 
 // ============================================================
@@ -137,6 +173,25 @@ function golpearTopo(evento) {
 // ============================================================
 function iniciarPartida() {
   // TU CÓDIGO AQUÍ 👇
+  puntaje = 0;
+  tiempoRestante = 30;
+  juegoActivo = true;
+
+  displayPuntaje.textContent = puntaje;
+  displayTiempo.textContent = tiempoRestante;
+  displayHighScore.textContent = cargarHighScore();
+  mensajeFinal.classList.add("oculto");
+
+  btnIniciar.disable = true;
+
+  mostrarTopo();
+
+  intervaloTopo = setInterval(mostrarTopo, 900);
+  intervaloTimer = setInterval(() => {
+    tiempoRestante--;
+    displayTiempo.textContent - tiempoRestante;
+    if (tiempoRestante <= 0) terminarPartida();
+  }, 1000);
 }
 
 // ============================================================
@@ -157,6 +212,24 @@ function iniciarPartida() {
 // ============================================================
 function terminarPartida() {
   // TU CÓDIGO AQUÍ 👇
+  juegoActivo = false;
+  clearInterval(intervaloTopo);
+  clearInterval(intervaloTimer);
+
+  if (hoyoActivo !== null) {
+    hoyoActivo.classList.remove("visible");
+    hoyoActivo = null;
+  }
+  const recordScore = actualizarHighScore();
+
+  if (recordScore) {
+    textoFinal.textContent = "Felicidades: Has superado el Record!!";
+  }
+
+  mensajeFinal.classList.remove("oculto");
+
+  btnIniciar.disable = false;
+  btnIniciar.textContent = "🔄 Jugar de nuevo";
 }
 
 // ============================================================
@@ -173,6 +246,10 @@ function terminarPartida() {
 // ============================================================
 
 // TU CÓDIGO AQUÍ 👇
+btnIniciar.addEventListener("click", iniciarPartida);
+hoyos.forEach((hoyo) => {
+  hoyo.addEventListener("click", golpearTopo);
+});
 
 // ============================================================
 // 🚀 ARRANQUE — Ya está escrito, no lo toques

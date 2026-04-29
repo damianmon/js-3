@@ -12,6 +12,7 @@
 -------------------------------------------------------------------------- */
 function calcularNivel(xp) {
   // TU CÓDIGO AQUÍ 👇
+  return Math.floor(xp / 100) + 1;
 }
 
 /* --------------------------------------------------------------------------
@@ -22,6 +23,7 @@ function calcularNivel(xp) {
 -------------------------------------------------------------------------- */
 function porcentajeProgreso(xp, total) {
   // TU CÓDIGO AQUÍ 👇
+  return Math.round((xp / total) * 100);
 }
 
 /* --------------------------------------------------------------------------
@@ -31,6 +33,7 @@ function porcentajeProgreso(xp, total) {
 -------------------------------------------------------------------------- */
 function esNuevoRecord(actual, max) {
   // TU CÓDIGO AQUÍ 👇
+  return actual > max;
 }
 
 /* --------------------------------------------------------------------------
@@ -41,6 +44,7 @@ function esNuevoRecord(actual, max) {
 -------------------------------------------------------------------------- */
 function ordenarRanking(arr) {
   // TU CÓDIGO AQUÍ 👇
+  return arr.sort((a, b) => b - a);
 }
 
 /* --------------------------------------------------------------------------
@@ -50,6 +54,7 @@ function ordenarRanking(arr) {
 -------------------------------------------------------------------------- */
 function topTres(arr) {
   // TU CÓDIGO AQUÍ 👇
+  return [...arr].sort((a, b) => b - a).slice(0, 3);
 }
 
 /* --------------------------------------------------------------------------
@@ -60,6 +65,7 @@ function topTres(arr) {
 -------------------------------------------------------------------------- */
 function generarId() {
   // TU CÓDIGO AQUÍ 👇
+  return Date.now();
 }
 
 /* --------------------------------------------------------------------------
@@ -69,6 +75,7 @@ function generarId() {
 -------------------------------------------------------------------------- */
 function aplicarMultiplicador(puntos, bonus) {
   // TU CÓDIGO AQUÍ 👇
+  return Math.floor(puntos * bonus);
 }
 
 /* --------------------------------------------------------------------------
@@ -78,6 +85,7 @@ function aplicarMultiplicador(puntos, bonus) {
 -------------------------------------------------------------------------- */
 function estaBloqueado(intentos) {
   // TU CÓDIGO AQUÍ 👇
+  return intentos >= 3;
 }
 
 /* --------------------------------------------------------------------------
@@ -87,6 +95,7 @@ function estaBloqueado(intentos) {
 -------------------------------------------------------------------------- */
 function formatearPosicion(pos) {
   // TU CÓDIGO AQUÍ 👇
+  return pos + "º";
 }
 
 /* --------------------------------------------------------------------------
@@ -98,6 +107,8 @@ function formatearPosicion(pos) {
 -------------------------------------------------------------------------- */
 function calcularDistancia(x1, y1, x2, y2) {
   // TU CÓDIGO AQUÍ 👇
+  const distancia = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+  return Number(distancia.toFixed(2));
 }
 
 // 🚨 ¡NO TOCAR! Exportación para los tests

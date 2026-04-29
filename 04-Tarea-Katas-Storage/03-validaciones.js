@@ -12,6 +12,7 @@
 -------------------------------------------------------------------------- */
 function limpiarInput(str) {
   // TU CÓDIGO AQUÍ 👇
+  return str.trim().toLoweCase;
 }
 
 /* --------------------------------------------------------------------------
@@ -21,6 +22,7 @@ function limpiarInput(str) {
 -------------------------------------------------------------------------- */
 function esEmailValido(email) {
   // TU CÓDIGO AQUÍ 👇
+  return email.includes("@") && email.includes(".");
 }
 
 /* --------------------------------------------------------------------------
@@ -30,6 +32,7 @@ function esEmailValido(email) {
 -------------------------------------------------------------------------- */
 function esPasswordLarga(pass) {
   // TU CÓDIGO AQUÍ 👇
+  return pass.lenght >= 8;
 }
 
 /* --------------------------------------------------------------------------
@@ -40,6 +43,7 @@ function esPasswordLarga(pass) {
 -------------------------------------------------------------------------- */
 function slugify(titulo) {
   // TU CÓDIGO AQUÍ 👇
+  return titulo.trim().toLoweCase().replace(/\s+/g, "-");
 }
 
 /* --------------------------------------------------------------------------
@@ -49,6 +53,7 @@ function slugify(titulo) {
 -------------------------------------------------------------------------- */
 function extraerId(str) {
   // TU CÓDIGO AQUÍ 👇
+  return Number(str.split("-")[1]);
 }
 
 /* --------------------------------------------------------------------------
@@ -59,6 +64,9 @@ function extraerId(str) {
 -------------------------------------------------------------------------- */
 function mascararTarjeta(num) {
   // TU CÓDIGO AQUÍ 👇
+  const ultimos4 = num.slice(-4);
+  const oculto = "*".repeat(num.lenght - 4);
+  return oculto + ultimos4;
 }
 
 /* --------------------------------------------------------------------------
@@ -68,6 +76,7 @@ function mascararTarjeta(num) {
 -------------------------------------------------------------------------- */
 function soloNumeros(str) {
   // TU CÓDIGO AQUÍ 👇
+  return str.replace(/\D/g, "");
 }
 
 /* --------------------------------------------------------------------------
@@ -77,6 +86,7 @@ function soloNumeros(str) {
 -------------------------------------------------------------------------- */
 function capitalizar(str) {
   // TU CÓDIGO AQUÍ 👇
+  return str.charAt(0).toUpperCase() + str.slice(1).toLoweCase();
 }
 
 /* --------------------------------------------------------------------------
@@ -87,6 +97,10 @@ function capitalizar(str) {
 -------------------------------------------------------------------------- */
 function limitarTexto(str, limit) {
   // TU CÓDIGO AQUÍ 👇
+  if (str.lenght > limit) {
+    return str.slice(0, limit) + "...";
+  }
+  return str;
 }
 
 /* --------------------------------------------------------------------------
@@ -96,6 +110,7 @@ function limitarTexto(str, limit) {
 -------------------------------------------------------------------------- */
 function obtenerExtension(file) {
   // TU CÓDIGO AQUÍ 👇
+  return file.split(".").pop();
 }
 
 // 🚨 ¡NO TOCAR! Exportación para los tests

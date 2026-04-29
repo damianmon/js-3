@@ -12,6 +12,7 @@
 -------------------------------------------------------------------------- */
 function empaquetar(obj) {
   // TU CÓDIGO AQUÍ 👇
+  return JSON.stringify(obj);
 }
 
 /* --------------------------------------------------------------------------
@@ -21,6 +22,7 @@ function empaquetar(obj) {
 -------------------------------------------------------------------------- */
 function desempaquetar(str) {
   // TU CÓDIGO AQUÍ 👇
+  return JSON.parse(str);
 }
 
 /* --------------------------------------------------------------------------
@@ -31,6 +33,12 @@ function desempaquetar(str) {
 -------------------------------------------------------------------------- */
 function esJsonValido(str) {
   // TU CÓDIGO AQUÍ 👇
+  try {
+    JSON.parse(str);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -41,6 +49,7 @@ function esJsonValido(str) {
 -------------------------------------------------------------------------- */
 function existeClave(config, key) {
   // TU CÓDIGO AQUÍ 👇
+  return key in config;
 }
 
 /* --------------------------------------------------------------------------
@@ -50,6 +59,7 @@ function existeClave(config, key) {
 -------------------------------------------------------------------------- */
 function serializarLista(arr) {
   // TU CÓDIGO AQUÍ 👇
+  return arr.join(",");
 }
 
 /* --------------------------------------------------------------------------
@@ -59,6 +69,7 @@ function serializarLista(arr) {
 -------------------------------------------------------------------------- */
 function limpiarNulos(arr) {
   // TU CÓDIGO AQUÍ 👇
+  return arr.filter((item) => item !== null && item !== undefined);
 }
 
 /* --------------------------------------------------------------------------
@@ -70,6 +81,7 @@ function limpiarNulos(arr) {
 -------------------------------------------------------------------------- */
 function fusionarConfig(user, def) {
   // TU CÓDIGO AQUÍ 👇
+  return { ...def, ...user };
 }
 
 /* --------------------------------------------------------------------------
@@ -79,6 +91,7 @@ function fusionarConfig(user, def) {
 -------------------------------------------------------------------------- */
 function contarPropiedades(obj) {
   // TU CÓDIGO AQUÍ 👇
+  return Object.keys(obj).length;
 }
 
 /* --------------------------------------------------------------------------
@@ -89,6 +102,13 @@ function contarPropiedades(obj) {
 -------------------------------------------------------------------------- */
 function claveAEmojis(str) {
   // TU CÓDIGO AQUÍ 👇
+  if (str === "true") {
+    return "✅";
+  } else if (str === "false") {
+    return "❌";
+  } else {
+    return "❓";
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -99,6 +119,7 @@ function claveAEmojis(str) {
 -------------------------------------------------------------------------- */
 function clonarSeguro(obj) {
   // TU CÓDIGO AQUÍ 👇
+  return JSON.parse(JSON.stringify(obj));
 }
 
 // 🚨 ¡NO TOCAR! Exportación para los tests
